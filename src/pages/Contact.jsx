@@ -29,7 +29,7 @@ const Contact = () => {
                     <div className="contact-item" style={{ background: 'var(--bg-card)', padding: '2rem', borderRadius: '8px' }}>
                         <Instagram size={32} color="#d4af37" style={{ marginBottom: '1rem' }} />
                         <h3>Follow Us</h3>
-                        <a href="https://www.instagram.com/fest.oages?igsh=Y3RrY2RmMzFyazgz" target="_blank" rel="noopener noreferrer" style={{ fontSize: '1.2rem', color: 'var(--text-light)' }}>@fest.oages</a>
+                        <a href="https://www.instagram.com/srikaredyshashi_photography?igsh=eHdqdGM1cWowb250" target="_blank" rel="noopener noreferrer" style={{ fontSize: '1.2rem', color: 'var(--text-light)' }}>@srikaredyshashi_photography</a>
                     </div>
 
                     <div className="contact-item" style={{ background: 'var(--bg-card)', padding: '2rem', borderRadius: '8px' }}>

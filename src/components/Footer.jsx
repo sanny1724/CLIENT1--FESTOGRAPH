@@ -11,8 +11,9 @@ const Footer = () => {
                         <h2 className="footer-logo">FESTOGRAPH</h2>
                         <p className="footer-tagline">Frame the Fest, Feel the Moment.</p>
                         <div className="social-links">
-                            <a href="https://www.instagram.com/fest.oages?igsh=Y3RrY2RmMzFyazgz" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <a href="https://www.instagram.com/srikaredyshashi_photography?igsh=eHdqdGM1cWowb250" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                 <Instagram size={24} />
+                                <span>@srikaredyshashi_photography</span>
                             </a>
                             <a href="mailto:festo.graphsrikaredyshashi@gmail.com" aria-label="Email">
                                 <Mail size={24} />

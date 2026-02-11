@@ -56,7 +56,7 @@ For a manual deploy, simply run `npm run build` and drag the `dist` folder to [N
 **Festograph by Srikaredyshashi Photography**
 -   **Phone**: +91 93914 39407
 -   **Email**: festo.graphsrikaredyshashi@gmail.com
--   **Instagram**: [@fest.oages](https://www.instagram.com/fest.oages?igsh=Y3RrY2RmMzFyazgz)
+-   **Instagram**: [@srikaredyshashi_photography](https://www.instagram.com/srikaredyshashi_photography?igsh=eHdqdGM1cWowb250)
 -   **Location**: Hyderabad, Telangana
 
 ---
