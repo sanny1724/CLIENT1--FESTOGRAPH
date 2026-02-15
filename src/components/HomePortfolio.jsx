@@ -1,26 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import heroBg from '../assets/hero-bg.png';
-import babySample from '../assets/baby-sample.png';
-import travelSample from '../assets/travel-sample.png';
-import fashionSample from '../assets/fashion-sample.jpg';
-import documentarySample from '../assets/documentary-sample.jpg';
-import productSample from '../assets/product-sample.jpg';
+import { getPortfolioItems } from '../utils/getPortfolio';
 import './HomePortfolio.css';
-
-const portfolioItems = [
-    { id: 1, category: 'Wedding', src: heroBg, title: 'Eternal Love' },
-    { id: 2, category: 'Baby', src: babySample, title: 'First Smiles' },
-    { id: 3, category: 'Travel', src: travelSample, title: 'Mountain Peaks' },
-    { id: 4, category: 'Fashion', src: fashionSample, title: 'Urban Chic' },
-    { id: 5, category: 'Product', src: productSample, title: 'Minimalist Watch' },
-    { id: 6, category: 'Documentary', src: documentarySample, title: 'Street Life' },
-];
 
 const HomePortfolio = () => {
     const [selectedId, setSelectedId] = useState(null);
+    const [portfolioItems, setPortfolioItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const items = await getPortfolioItems();
+                setPortfolioItems(items);
+            } catch (error) {
+                console.error("Failed to load portfolio items", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchItems();
+    }, []);
 
     const openLightbox = (id) => setSelectedId(id);
     const closeLightbox = () => setSelectedId(null);
@@ -41,6 +44,10 @@ const HomePortfolio = () => {
         setSelectedId(portfolioItems[prevIndex].id);
     };
 
+    if (loading) {
+        return <div className="text-center py-20">Loading portfolio...</div>;
+    }
+
     return (
         <section className="section portfolio-section">
             <div className="container">
@@ -49,24 +56,28 @@ const HomePortfolio = () => {
                     <p className="section-subtitle">A glimpse into our visual storytelling.</p>
                 </div>
 
-                <div className="portfolio-grid">
-                    {portfolioItems.map((item) => (
-                        <motion.div
-                            key={item.id}
-                            className="portfolio-item"
-                            layoutId={`portfolio-item-${item.id}`}
-                            onClick={() => openLightbox(item.id)}
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <img src={item.src} alt={item.title} loading="lazy" />
-                            <div className="portfolio-overlay">
-                                <h3>{item.category}</h3>
-                                <p>{item.title}</p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+                {portfolioItems.length === 0 ? (
+                    <p className="text-center">No portfolio items found.</p>
+                ) : (
+                    <div className="portfolio-grid">
+                        {portfolioItems.map((item) => (
+                            <motion.div
+                                key={item.id}
+                                className="portfolio-item"
+                                layoutId={`portfolio-item-${item.id}`}
+                                onClick={() => openLightbox(item.id)}
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <img src={item.src} alt={item.title} loading="lazy" />
+                                <div className="portfolio-overlay">
+                                    <h3>{item.category}</h3>
+                                    <p>{item.title}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                )}
 
                 <div className="text-center mt-3">
                     <Link to="/portfolio" className="btn btn-outline">View Full Portfolio</Link>
