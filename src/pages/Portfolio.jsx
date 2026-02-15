@@ -1,30 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import heroBg from '../assets/hero-bg.png';
-import babySample from '../assets/baby-sample.png';
-import travelSample from '../assets/travel-sample.png';
-import fashionSample from '../assets/fashion-sample.jpg';
-import documentarySample from '../assets/documentary-sample.jpg';
-import productSample from '../assets/product-sample.jpg';
-import foodSample from '../assets/food-sample.jpg';
+import { getPortfolioItems } from '../utils/getPortfolio';
 import '../components/HomePortfolio.css';
-
-// Extended portfolio items (reusing images for demonstration)
-const allItems = [
-    { id: 1, category: 'Wedding', src: heroBg, title: 'Eternal Love' },
-    { id: 2, category: 'Baby', src: babySample, title: 'First Smiles' },
-    { id: 3, category: 'Travel', src: travelSample, title: 'Mountain Peaks' },
-    { id: 4, category: 'Fashion', src: fashionSample, title: 'Urban Chic' },
-    { id: 5, category: 'Product', src: productSample, title: 'Minimalist Watch' },
-    { id: 6, category: 'Documentary', src: documentarySample, title: 'Street Life' },
-    { id: 7, category: 'Food', src: foodSample, title: 'Gourmet Delight' },
-];
+// Images removed as they are now fetched dynamically
 
 const categories = ['All', 'Wedding', 'Baby', 'Travel', 'Fashion', 'Product', 'Food', 'Documentary'];
 
 const Portfolio = () => {
     const [filter, setFilter] = useState('All');
-    const [visibleItems, setVisibleItems] = useState(allItems);
+    const [allItems, setAllItems] = useState([]);
+    const [visibleItems, setVisibleItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const items = await getPortfolioItems();
+                setAllItems(items);
+                setVisibleItems(items);
+            } catch (error) {
+                console.error("Failed to load portfolio items", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchItems();
+    }, []);
 
     const handleFilter = (category) => {
         setFilter(category);
