@@ -10,7 +10,8 @@ collections:
     label: "Portfolio Items" # Used in the UI
     folder: "src/content/portfolio" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    extension: "json" # Force JSON format
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.json
     fields: # The fields for each document, usually in front matter
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Category", name: "category", widget: "select", options: ["Wedding", "Baby", "Travel", "Fashion", "Product", "Food", "Documentary"]}
