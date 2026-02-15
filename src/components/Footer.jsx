@@ -45,6 +45,7 @@ const Footer = () => {
 
                 <div className="footer-bottom">
                     <p>&copy; {new Date().getFullYear()} Festograph by Srikaredyshashi Photography. All rights reserved.</p>
+                    <a href="/admin" className="admin-link" style={{ opacity: 0.3, fontSize: '0.8rem', color: 'inherit', textDecoration: 'none', marginLeft: '10px' }}>Admin Login</a>
                 </div>
             </div>
         </footer>
